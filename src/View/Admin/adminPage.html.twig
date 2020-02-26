@@ -1,0 +1,48 @@
+{% block adminHeader %}
+    <div class="container">
+        <div class="row text-center">
+            <h1 class="col">Admin Page</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block adminNav %}
+    
+{% endblock %}
+
+{% block adminHome %}
+        <table class="container">
+            <tr class="row text-center>">
+                <th>ID</th>
+                <th>Categorie Demandeur</th>
+                <th>Categorie prestation</th>
+                <th>nom</th>
+                <th>Societe</th>
+            </tr>
+            <tbody>
+            {% for admin in adminHome %}
+                <tr>
+                {% for item in admin %}
+                        <pre>
+                            {{ dump(item) }}
+                        </pre>
+                        <td class="col-3" style="border:1px solid black"><a href="">{{item}}</a></td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            <pre>
+                {{ dump(adminHome) }}
+            </pre>
+        
+    
+{% endblock %}
+
+{% block adminContent %}
+    
+{% endblock %}
+
+{% block adminFooter %}
+    
+{% endblock %}

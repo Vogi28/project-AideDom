@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+
+{% block contact %}
+    <div class="container">  
+  <form id="contact" action="/Contact/checking" method="post">
+    <h3>Quick Contact</h3>
+    <h4>Envoyez nous votre message, nous vous répondons sous 48h!</h4>
+    <fieldset>
+      <input name="nom" placeholder="Votre nom" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input name="email" placeholder="Email" type="email" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <textarea name="message" placeholder="Entrez votre message...." tabindex="3" required></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
+    </fieldset>
+  </form>
+ 
+  
+</div>
+{% endblock %}

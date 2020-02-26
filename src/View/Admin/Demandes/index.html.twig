@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<pre>
+  {{ dump(demandes) }}
+</pre>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">N° Devis</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Société</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for demande in demandes %}
+    <tr>
+      <th scope="row">{{ demande.id_prestation }}</th>
+      <td>{{ demande.categorie_demandeur }}</td>
+      <td> {{ demande.nom }} {{ demande.prenom }} </td>
+      <td> {{ demande.societe }} </td>
+      <td>
+        <form method="POST" action="../AdminDemande/status/{{ demande.id_prestation }}">
+        <label for="choixEtat"></label>
+          <select id="choixEtat" name="choixEtat" onchange="this.form.submit()">
+            {% if demande.etat == 1 %}
+              <option value="Pris en charge">Pris en charge</option>
+              <option value="Archivé">Archivé</option>
+            {% elseif demande.etat == 2 %}
+              <option value="Archivé">Archivé</option>
+            {% else %}
+              <option value="Reçu">Reçu</option>
+              <option value="Pris en charge">Pris en charge</option>
+              <option value="Archivé">Archivé</option>
+            {% endif %}
+          </select>
+        </form> 
+      </td>
+      <td><a href="/AdminDemande/show/{{ demande.id_prestation }}"> Détails </a> <a href="/AdminDemande/delete/{{ demande.id_prestation }}"> Supprimer </a> <a href="/AdminDemande/toArchive/{{ demande.id_prestation }}"> Archiver </a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+{% block logout %}
+<div class="container">
+  <div class="row">
+  {% if demandes is not empty %}
+    <div class="col offset-8">
+      Bonjour Gilles
+    </div>
+  {% endif %}
+  <div class="col">
+    <button type="button" class="btn btn-primary btn-block" name="logout"><a href="/AdminDemande/logOut" style="color:white; text-decoration:none;">Se déconnecter</a></button>
+  </div>
+  </div>
+  </div>
+{% endblock %}

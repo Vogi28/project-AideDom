@@ -1,0 +1,272 @@
+{% extends 'layout.html.twig' %}
+
+
+
+{% block title %}Demande de devis{% endblock %}
+
+{% block stylesheet %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+{% endblock %}
+
+{% block form %}
+    <form class="container" method="POST" action="../FormCheck/check" > <!-- my-handling-form-page ../Form/add-->
+    {% include '/Item/form.html' %}
+    <div class="button_envoi_devis" id="boutonPost">
+        <button type="submit" class="btn btn-primary"> Vérification de votre demande </button>
+    </div>
+</form>
+{% endblock %}
+
+{% block php_form %}
+
+
+
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+
+function checkMail() {
+    let userMailJS = document.getElementById('userMailI').value;
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userMailJS)) {
+        return true;
+    } else {
+        alert('adresse email invalide ! Veuillez ressaisir');
+        document.getElementById('userMailI').value = "";
+        return false;
+    }
+}
+
+cacherPro();
+
+function cacherPro() {
+    suppValeur('companyNameI');
+    suppValeur('numSiretI');
+    suppValeur('cleanSurfI');
+    suppValeur('gardenSurfI');
+    suppValeur('gardenComments');
+    suppValeur('cleanComments');
+    for (let i=1; i<=4; i++) {cacherPoids(i);}
+    document.getElementById('checkProNo').setAttribute('checked','');
+    document.getElementById('societe').style.visibility='hidden';
+    document.getElementById('cleaning_pro_1').style.display='none';
+    document.getElementById('cleaning_pro_2').style.display='none';
+    document.getElementById('gardening_pro_1').style.display='none';
+    document.getElementById('gardening_pro_2').style.display='none';
+    document.getElementById('ironing_pro').style.display='none';
+    document.getElementById('ironing_part').style.display='flex';
+    document.getElementById('gardening_part').style.display='flex';
+    document.getElementById('cleaning_part').style.display='flex';
+    selectedTask();
+}
+
+function afficherPro() {
+    suppValeur('gardenHoursNbI');
+    suppValeur('cleanHoursNbI');
+    suppValeur('ironHoursNbI');
+    document.getElementById('societe').style.visibility='visible';
+    document.getElementById('cleaning_pro_1').style.display='flex';
+    document.getElementById('cleaning_pro_2').style.display='block';
+    document.getElementById('gardening_pro_1').style.display='flex';
+    document.getElementById('gardening_pro_2').style.display='block';
+    document.getElementById('ironing_pro').style.display='block';
+    document.getElementById('ironing_part').style.display='none';
+    document.getElementById('gardening_part').style.display='none';
+    document.getElementById('cleaning_part').style.display='none';
+    document.getElementById('companyNameI').setAttribute('required', '');
+    document.getElementById('numSiretI').setAttribute('required', '');
+    for (let i=1; i<=4; i++) {afficherPoids(i);}
+    selectedTask();
+}
+
+function afficherPoids(nb) {
+    let linenType;
+    switch (nb) {
+        case 1:
+            linenType = 'cottonClothes';
+            break;
+        case 2:
+            linenType = 'otherClothes';
+            break;
+        case 3:
+            linenType = 'bedLinen';
+            break;
+        case 4:
+            linenType = 'tableLinen';
+            break;
+    }
+    if (document.getElementById(linenType).checked === true) {
+        document.getElementById(linenType + 'Weight').style.visibility='visible';
+        document.getElementById(linenType + 'Weight').setAttribute('required', '');
+    } else {
+        suppValeur(linenType + 'Weight');
+        document.getElementById(linenType + 'Weight').style.visibility='hidden';
+    }
+}
+
+function cacherPoids(nb) {
+    let linenType;
+    switch (nb) {
+        case 1:
+            linenType = 'cottonClothes';
+            break;
+        case 2:
+            linenType = 'otherClothes';
+            break;
+        case 3:
+            linenType = 'bedLinen';
+            break;
+        case 4:
+            linenType = 'tableLinen';
+            break;
+    }
+    if (document.getElementById(linenType).checked === true) {
+        suppValeur(linenType + 'Weight');
+        document.getElementById(linenType).checked = false;
+    }
+}
+
+function suppValeur(id) {
+    document.getElementById(id).value = "";
+    document.getElementById(id).removeAttribute('required');
+}
+
+function selectedTask() {
+
+    let selector = document.getElementById('services');
+    let value = selector[selector.selectedIndex].value;
+    if (value === 'cleaning') {
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='none';
+        document.getElementById('gardening').style.display='none';
+        selector.style.backgroundColor='lightcyan';
+
+        if (document.getElementById('checkProYes').checked === false) {
+            suppValeur('cleanSurfI');
+            document.getElementById('cleanHoursNbI').setAttribute('required', '');
+        }  else {
+             suppValeur('cleanHoursNbI');
+             document.getElementById('cleanSurfI').setAttribute('required', '');
+             for (let i=1; i<=4; i++) {cacherPoids(i);}
+        }
+    }
+    if (value === 'ironing') {
+        document.getElementById('ironing').style.display='flex';
+        document.getElementById('cleaning').style.display='none';
+        document.getElementById('gardening').style.display='none';
+        selector.style.backgroundColor='lightyellow';
+        if (document.getElementById('checkProYes').checked === false) {
+             document.getElementById('ironHoursNbI').setAttribute('required', '');
+            for (let i=1; i<=4; i++) {cacherPoids(i);}
+        } else {
+            for (let i=1; i<=4; i++) {afficherPoids(i);}
+            suppValeur('ironHoursNbI');
+        }
+    }
+    if (value === 'gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='none';
+        document.getElementById('ironing').style.display='none';
+        selector.style.backgroundColor='darkseagreen';
+        if (document.getElementById('checkProYes').checked === false) {
+            suppValeur('gardenSurfI');
+            document.getElementById('gardenHoursNbI').setAttribute('required', '');
+
+        } else {
+            suppValeur('gardenHoursNbI');
+            document.getElementById('gardenSurfI').setAttribute('required', '');
+            for (let i=1; i<=4; i++) {cacherPoids(i);}
+        }
+
+    }
+
+
+    if (value === 'cleaning_ironing') {
+        document.getElementById('gardening').style.display='none';
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='flex';
+        selector.style.backgroundColor='white';
+        if (document.getElementById('checkProYes').checked === false) {
+                suppValeur('cleanSurfI');
+                document.getElementById('cleanHoursNbI').setAttribute('required', '');
+                document.getElementById('ironHoursNbI').setAttribute('required', '');
+                for (let i=1; i<=4; i++) {cacherPoids(i);}
+        } else {
+                suppValeur('cleanHoursNbI');
+                suppValeur('ironHoursNbI');
+                document.getElementById('cleanSurfI').setAttribute('required', '');
+                for (let i=1; i<=4; i++) {afficherPoids(i);}
+        }
+
+    }
+    if (value === 'cleaning_gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='none';
+        selector.style.backgroundColor='white';
+        if (document.getElementById('checkProYes').checked === false) {
+            suppValeur('cleanSurfI');
+            suppValeur('gardenSurfI');
+            document.getElementById('cleanHoursNbI').setAttribute('required', '');
+            document.getElementById('gardenHoursNbI').setAttribute('required', '');
+        } else {
+            suppValeur('cleanHoursNbI');
+            suppValeur('gardenHoursNbI');
+            document.getElementById('cleanSurfI').setAttribute('required', '');
+            document.getElementById('gardenSurfI').setAttribute('required', '');
+            for (let i=1; i<=4; i++) {cacherPoids(i);}
+        }
+    }
+    if (value === 'ironing_gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='none';
+        document.getElementById('ironing').style.display='flex';
+        selector.style.backgroundColor='white';
+        if (document.getElementById('checkProYes').checked === false) {
+            suppValeur('gardenSurfI');
+            document.getElementById('ironHoursNbI').setAttribute('required', '');
+            document.getElementById('gardenHoursNbI').setAttribute('required', '');
+            for (let i=1; i<=4; i++) {cacherPoids(i);}
+        } else {
+            suppValeur('ironHoursNbI');
+            suppValeur('gardenHoursNbI');
+            document.getElementById('gardenSurfI').setAttribute('required', '');
+            for (let i=1; i<=4; i++) {afficherPoids(i);}
+        }
+    }
+    if (value === 'cleaning_ironing_gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='flex';
+        selector.style.backgroundColor='white';
+        if (document.getElementById('checkProYes').checked === false) {
+                suppValeur('gardenSurfI');
+                suppValeur('cleanSurfI');
+                document.getElementById('ironHoursNbI').setAttribute('required', '');
+                document.getElementById('gardenHoursNbI').setAttribute('required', '');
+                document.getElementById('cleanHoursNbI').setAttribute('required', '');
+                for (let i=1; i<=4; i++) {cacherPoids(i);}
+         } else {
+                suppValeur('ironHoursNbI');
+                suppValeur('gardenHoursNbI');
+                suppValeur('cleanHoursNbI');
+                document.getElementById('gardenSurfI').setAttribute('required', '');
+                document.getElementById('cleanSurfI').setAttribute('required', '');
+                for (let i=1; i<=4; i++) {afficherPoids(i);}
+        }
+    }
+
+}
+
+</script>
+
+{%  endblock %}
+

@@ -1,0 +1,144 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Aide Dom'
+{% endblock %}
+
+
+{#=====================================Header============================================#}
+
+{% block header %}
+    {#<div class="container-fluid">
+        <div class="row align-middle">
+            <div class="col align-middle">#}
+                <nav class="navbar navbar-expand-sm align-middle">
+                    <ul class="navbar-nav align-middle">
+                        <li class="nav-item active align-middle">
+                          <a class="nav-link" href="/Home/index"><img src="/assets/images/Logo.png" width="110px" height="auto"></a>
+                        </li>
+                        <li class="link_service_page">
+                        <a class="nav-link" href="/Service/index">Nos services</a>
+                        </li>
+                        <li class="link_service_page">
+                        <a class="nav-link" href="/QuiSommesNous/index">Qui sommes nous</a>
+                        </li>
+                    </ul>
+                </nav>
+            {#</div>
+        </div>
+    </div>#}
+{% endblock %}
+{#=====================================Devis============================================#}
+
+{% block devis %}
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col button">
+                <input type='button' class="devis_button" onclick="window.location.href='/Form/index'" value="Votre devis gratuit" />
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{#=====================================Textes et images============================================#}
+
+
+{% block textes_accroche_et_images %}
+     <div class="container-fluid" style="">
+        <div class="row text-center my-auto">
+            <div class="col">
+                <h2>Votre satisfaction est notre priorité</h2>
+                <p>La société strasbourgeoise Aide Dom’ se spécialise dans la prestation de service haut de gamme destinée à répondre aux besoins spécifiques des familles: ménage, repassage et jardinage.</p>
+                <p>Pour apprendre à mieux nous connaître</p>
+                <div class="container-fluid">
+                     <div class="row text-center">
+                           <div class="col button">
+                           <input type='button' class="description_button" onclick="window.location.href='/QuiSommesNous/index'" value="Cliquez ici" />
+                           </div>
+                     </div>
+                </div>
+            </div>
+            <div class="col">
+                <img src="/assets/images/agence.png">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{#=====================================Notations et Avantages============================================#}
+
+{% block notation_avantages %}
+    <div class="not_ava">
+        <div class="marquee-rtl marquee-multi-lignes">
+            {% for review in reviews | slice(1,2) %}
+                <div>
+                {% if review.note > 4 %}
+                    <p><img src="/assets/images/5stars.png" width="200px" height="auto"></p>
+                {% else %}
+                    <p><img src="/assets/images/4stars.png" width="200px" height="auto"></p>
+                {% endif %}
+                
+                    <p>{{ review.nom }} {{ review.prenom }} :</p>
+                    <p>{{ review.commentaire }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <div>
+                <img src="/assets/images/cheque_emploi_service.png">
+            </div>
+            <div>
+                <ul>
+                    <li>Plus de temps et d’énergie pour votre famille et vos loisirs</li>
+                    <li>Aucune formalité administrative car nous sommes l’employeur de votre aide à domicile</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Un avantage fiscal à hauteur de 50% des dépenses engagées chaque année (selon l’article 199 sexdecies du CGI)</li>
+                    <li>La possibilité de payer par CESU (chèques emploi service universel) préfinancés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{#=====================================FOOTER============================================#}
+
+
+{% block footer %}
+<nav class="footer footer-expand-lg">
+    <ul class="footer_nav">
+      <li class="foot_item active">
+        <a class="foot_link" href="/Contact/index">Contact</a>
+      </li>
+      <li class="foot_item active">
+        <a class="foot_link" href="/Confidentialite/index">Politique de confidentialité</a>
+      </li>
+      <li class="foot_item active">
+        <a class="foot_link" href="/Mentions/index">Mentions légales</a>
+      </li>
+      <li class="foot_item active">
+      {# {% if session.username === 'ADMIN' %} #}
+        {# <a class="foot_link" href="/Admin/index">Espace administrateur</a> #}
+      {# {% else %} #}
+        <a class="foot_link" href="/Admin/login">Espace administrateur</a>
+      {# {% endif %} #}
+      
+      </li>
+      <div class="fb_logo foot_item">
+      <a href="https://www.facebook.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/facebook.png" alt="logo facebook"></a>
+      </div>
+      <div class="insta_logo foot_item">
+      <a href="https://www.instagram.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/instagram.png" alt="logo instagram"></a>
+      </div>
+      <div class="twit_logo foot_item">
+      <a href="https://twitter.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/twi.png" alt="logo twitter"></a>
+      </div>
+      <div class="twit_logo foot_item">
+      <a href="https://tinder.com/?lang=fr/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/logo_tinder.png" alt="logo tinder"></a>
+      </div>
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}

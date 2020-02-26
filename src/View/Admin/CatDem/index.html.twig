@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h2>Les catégories demandeur</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for catDem in catDems %}
+            <tr>
+                <td>{{ catDem.categorie_demandeur }}</td>
+                <td><a href="">Voir</a> <a href="">Supprimer</a> <a href="">Modifier</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

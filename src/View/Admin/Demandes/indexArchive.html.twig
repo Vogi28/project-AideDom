@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">N° Devis</th>
+      <th scope="col">ID Demandeur</th>
+      <th scope="col">Société</th>
+      <th scope="col">Date</th>
+      <th scope="col">Etat</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for demande in demandes %}
+    <tr>
+      <th scope="row">{{ demande.id }}</th>
+      <td>{{ demande.categorie }}</td>
+      <td> {{ demande.nom }} </td>
+      <td> {{ demande.societe }} </td>
+      <td> {{ demande.etat }} </td>
+      <td><a href="/AdminDemande/show/{{ demande.id_prestation }}"> Détails </a> <a href="/AdminDemande/delete/{{ demande.id_prestation }}"> Supprimer </a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

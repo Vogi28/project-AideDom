@@ -1,0 +1,287 @@
+{% extends 'layout.html.twig' %}
+
+{% block content_client %}
+    <table class="show">
+        <thead>
+        </thead>
+        <tbody>
+        {% if adminInfos.id_cat_demandeur == 1 %}
+            <tr>
+                <th scope="col">N° Devis</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Numéro appartement et étage</th>
+                <th scope="col">Date intervention</th>
+            </tr>
+            {% for infos in adminInfos | slice (0, 1) %}
+                <tr>
+                    <th scope="row">{{ adminInfos.id_prestation }}</th>
+                    <td>{{ adminInfos.categorie_demandeur }}</td>
+                    <td>{{ adminInfos.nom }} {{ adminInfos.prenom }}</td>
+                    <td>{{ adminInfos.telephone }}</td>
+                    <td>{{ adminInfos.email}}</td>
+
+                    <td>{{ adminInfos.adresse }}{{ adminInfos.code_postal }}{{ adminInfos.commune }}</td>
+                    <td>{{ adminInfos.etage}}{{ adminInfos.num_appart}}</td>
+                    <td>{{ adminInfos.date}}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        {% if adminInfos.id_cat_demandeur == 2 %}
+            <tr>
+                <th scope="col">N° Devis</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Société</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Date intervention</th>
+            </tr>
+            {% for infos in adminInfos | slice (0, 1) %}
+                <tr>
+                    <th scope="row">{{ adminInfos.id_prestation }}</th>
+                    <td>{{ adminInfos.categorie_demandeur }}</td>
+                    <td>{{ adminInfos.nom }} {{ adminInfos.prenom }}</td>
+                    <td>{{ adminInfos.societe }}</td>
+                    <td>{{ adminInfos.telephone }}</td>
+                    <td>{{ adminInfos.email }}</td>
+
+                    <td>{{ adminInfos.adresse }}{{ adminInfos.code_postal }}{{ adminInfos.commune }}</td>
+                    <td>{{ adminInfos.date}}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+{% endblock %}
+{% block content_prestation %}
+        {% if adminInfos.id_cat_demandeur == 1  %}
+            {% for infos in adminInfos | slice (0, 1) %}
+                {% if adminInfos.id_categorie_service == 1 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de ménage</th>
+                        <th scope="col">Détails</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_menage }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 2 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de repassage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_repassage }}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 3 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de jardinage</th>
+                        <th scope="col">Détails</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_jardin }}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 4 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de ménage</th>
+                        <th scope="col">Nombres d'heures de repassage</th>
+                        <th scope="col">Détails sur le ménage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_menage }}</td>
+                        <td>{{ adminInfos.nb_heures_repassage }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 5 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de ménage</th>
+                        <th scope="col">Nombres d'heures de jardinage</th>
+                        <th scope="col">Détails sur le ménage</th>
+                        <th scope="col">Détails sur le jardinage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_menage }}</td>
+                        <td>{{ adminInfos.nb_heures_jardin }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 6 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de repassage</th>
+                        <th scope="col">Nombres d'heures de jardinage</th>
+                        <th scope="col">Détails sur le jardinage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_repassage }}</td>
+                        <td>{{ adminInfos.nb_heures_jardin }}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 7 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Nombres d'heures de ménage</th>
+                        <th scope="col">Nombres d'heures de repassage</th>
+                        <th scope="col">Nombres d'heures de jardin</th>
+                        <th scope="col">Détails sur le ménage</th>
+                        <th scope="col">Détails sur le jardin</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.nb_heures_menage }}</td>
+                        <td>{{ adminInfos.nb_heures_repassage }}</td>
+                        <td>{{ adminInfos.nb_heures_jardin }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if adminInfos.id_cat_demandeur == 3 %}
+            {% for infos in adminInfos | slice (0, 1) %}
+                {% if adminInfos.id_categorie_service == 1 %}
+                    <tr>
+                        <th scope="col">Catégorie service</th>
+                        <th scope="col">Surface total</th>
+                        <th scope="col">Détails</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.surface_menage }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 2 %}
+                    <tr>
+                        <th scope="col">Catégorie service</th>
+                        <th scope="col">Poids du textile coton</th>
+                        <th scope="col">Poids du linge de lit</th>
+                        <th scope="col">Poids du linge de table</th>
+                        <th scope="col">Poids du textile autre</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.poids_coton }}</td>
+                        <td>{{ adminInfos.poids_linge_lit }}</td>
+                        <td>{{ adminInfos.poids_linge_table }}</td>
+                        <td>{{ adminInfos.poids_autres }}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 3 %}
+                    <tr>
+                        <th scope="col">catégorie service</th>
+                        <th scope="col">Surface totale</th>
+                        <th scope="col">Détails</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.surface_jardin }}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 4 %}
+                    <tr>
+                        <th scope="col">Catégorie service</th>
+                        <th scope="col">Surface total ménage</th>
+                        <th scope="col">Détails ménage</th>
+                        <th scope="col">Poids du textile coton</th>
+                        <th scope="col">Poids du linge de lit</th>
+                        <th scope="col">Poids du linge de table</th>
+                        <th scope="col">Poids du textile autre</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.surface_menage }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                        <td>{{ adminInfos.poids_coton }}</td>
+                        <td>{{ adminInfos.poids_linge_lit }}</td>
+                        <td>{{ adminInfos.poids_linge_table }}</td>
+                        <td>{{ adminInfos.poids_autres }}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 5 %}
+                    <tr>
+                        <th scope="col">Catégorie service</th>
+                        <th scope="col">Surface total ménage</th>
+                        <th scope="col">Détails ménage</th>
+                        <th scope="col">Surface totale jardinage</th>
+                        <th scope="col">Détails jardinage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.surface_menage }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                        <td>{{ adminInfos.surface_jardin }}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 6 %}
+                    <tr>
+                        <th scope="col">Catégorie service</th>
+                        <th scope="col">Poids du textile coton</th>
+                        <th scope="col">Poids du linge de lit</th>
+                        <th scope="col">Poids du linge de table</th>
+                        <th scope="col">Poids du textile autre</th>
+                        <th scope="col">Surface totale jardinage</th>
+                        <th scope="col">Détails jardinage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.poids_coton }}</td>
+                        <td>{{ adminInfos.poids_linge_lit }}</td>
+                        <td>{{ adminInfos.poids_linge_table }}</td>
+                        <td>{{ adminInfos.poids_autres }}</td>
+                        <td>{{ adminInfos.surface_jardin }}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+                {% if adminInfos.id_categorie_service == 7 %}
+                    <tr>
+                        <th scope="col">Catégorie service</th>
+                        <th scope="col">Surface total ménage</th>
+                        <th scope="col">Détail ménages</th>
+                        <th scope="col">Poids du textile coton</th>
+                        <th scope="col">Poids du linge de lit</th>
+                        <th scope="col">Poids du linge de table</th>
+                        <th scope="col">Poids du textile autre</th>
+                        <th scope="col">Surface totale jardinage</th>
+                        <th scope="col">Détails jardinage</th>
+                    </tr>
+                    <tr>
+                        <td>{{ adminInfos.categorie_service }}</td>
+                        <td>{{ adminInfos.surface_menage }}</td>
+                        <td>{{ adminInfos.details_menage}}</td>
+                        <td>{{ adminInfos.poids_coton }}</td>
+                        <td>{{ adminInfos.poids_linge_lit }}</td>
+                        <td>{{ adminInfos.poids_linge_table }}</td>
+                        <td>{{ adminInfos.poids_autres }}</td>
+                        <td>{{ adminInfos.surface_jardin }}</td>
+                        <td>{{ adminInfos.details_jardinage}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
+

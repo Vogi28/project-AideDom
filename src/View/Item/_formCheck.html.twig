@@ -1,0 +1,236 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Verif Demande de devis{% endblock %}
+
+
+{% block stylesheet %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% endblock %}
+{% block form %}
+{% if formErrors is empty %}
+    <form class="container" method="POST" action="../Form/add" >
+        {% include '/Item/form.html' %}
+        <div id="formAdd"><div class="alert alert-success" role="alert" id="alert-success">
+        <button type="submit" id="boutonVert"> Votre demande de devis a été vérifiée :
+            <b>OK</b> Nous vous contacterons prochainement ! Cliquer pour l'envoyer !</button>
+        </div></div>
+{% else %}
+    <form class="container" method="POST" action="../FormCheck/check" >
+        {% include '/Item/form.html' %}
+        <div id="formToCorrect"><div class="alert alert-danger" role="alert" id="alert-danger">
+        <button type="submit" id="boutonRouge"> Votre demande de devis a été vérifiée :
+            <b>NOK car {{ formErrors | length }} champ(s) à corriger</b>...puis cliquer pour revérifier</button>
+        </div></div>
+
+{% endif %}
+
+    </form>
+{% endblock %}
+
+{% block php_form %}
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+// document.getElementById('boutonPost').style.display = 'none';
+{% if formErrors is not empty %}
+formErrorsCorr();
+document.getElementById('formToCorrect').style.display = 'block';
+// document.getElementById('boutonVert').setAttribute('value','formToCorrect');
+{% else %}
+document.getElementById('formAdd').style.display = 'block';
+// document.getElementById('boutonVert').setAttribute('value','formToAdd');
+{% endif %}
+
+
+freezeForm();
+init();
+
+function init() {
+    let valuePro = '{{ itemPosted['checkPro'] }}';
+    if (valuePro === 'no') {
+        cacherPro();
+    } else {
+        afficherPro();
+    }
+    document.getElementById('services').style.display = 'none';
+    document.getElementById('servFreeze').style.display = 'flex';
+    document.getElementById('servFreezeI').style.color = '#0000ff';
+    document.getElementById('servFreezeI').style.fontWeight = 'bold';
+    let valueServ = '{{ itemPosted['services'] }}';
+    let valueServM = translateServ(valueServ);
+    document.getElementById('servFreezeI').value = valueServM;
+    selectedTask(valueServ);
+}
+
+function translateServ(valueServ) {
+    switch (valueServ) {
+        case "cleaning":
+            return "MENAGE";
+        case "ironing":
+            return "REPASSAGE";
+        case "gardening":
+            return "JARDINAGE";
+        case "cleaning_gardening":
+            return  "MENAGE + JARDINAGE";
+        case "cleaning_ironing":
+            return "MENAGE + REPASSAGE";
+        case "ironing_gardening":
+            return  "REPASSAGE + JARDINAGE";
+        case "cleaning_ironing_gardening":
+            return "MENAGE + REPASSAGE + JARDINAGE";
+    }
+}
+
+function freezeForm() {
+    let valeurDansForm;
+    let clefDansForm;
+    let elem;
+    {% for key in keyPosted %}
+        valeurDansForm = '{{ itemPosted[key] }}';
+        clefDansForm = '{{ key }}';
+        {% set key2 = key ~ 'Error' %}
+        {% if key2 in formErrors %}
+        {% else %}
+            elem = document.getElementsByName(clefDansForm)[0];
+            if(clefDansForm.slice(-6) === 'Weight') {
+                elem.style.visibility='visible';
+                elem.setAttribute('readonly','');
+                elem.value = valeurDansForm;
+                document.getElementById(clefDansForm.slice(0,-6)).setAttribute('checked', '');
+            } else {
+                elem.removeAttribute('required');
+                elem.setAttribute('readonly','');
+                elem.value = valeurDansForm;
+            }
+        {% endif %}
+    {% endfor %}
+}
+
+function formErrorsCorr() {
+    let elem;
+    let valeurDansForm;
+    let clefDansForm;
+    {% for item in formErrors %}
+    {% set item2 = item|slice(0,-5) %}
+    elem = document.getElementsByName('{{ item2 }}')[0];
+    {#valeurDansForm = '{{ itemPosted[item2] }}';#}
+    clefDansForm = '{{ item2 }}';
+    if (clefDansForm.slice(-6) === 'Weight' || clefDansForm.slice(-4) === 'Surf' ||
+        clefDansForm.slice(-7) === 'HoursNb') {
+        elem.style.visibility='visible';
+        elem.focus();
+        elem.value = '';
+        elem.setAttribute('placeholder', 'nombre > 0 attendu');
+        elem.setAttribute('required','');
+        if (clefDansForm.slice(-6) === 'Weight') {
+            document.getElementById(clefDansForm.slice(0,-6)).setAttribute('checked', '');
+        }
+    }
+    if (clefDansForm === 'floor') {
+        elem.focus();
+        elem.value = '';
+        elem.setAttribute('placeholder', 'nombre > 0 attendu');
+        document.getElementById('floorI').style.backgroundColor = 'orange';
+    } else if (clefDansForm === 'zipCode') {
+        elem.removeAttribute('required');
+        elem.focus();
+        elem.value = '';
+        elem.setAttribute('placeholder', '5 chiffres attendus - ex:67000');
+        elem.setAttribute('required','');
+    } else if (clefDansForm === 'numSiret') {
+        elem.removeAttribute('required');
+        elem.focus();
+        elem.value = '';
+        elem.setAttribute('placeholder', '9 à 13 chiffres attendus');
+        elem.setAttribute('required','');
+    } else if (clefDansForm === 'userPhone') {
+        elem.removeAttribute('required');
+        elem.focus();
+        elem.value = '';
+        elem.setAttribute('placeholder', '10 chiffres minimum attendus');
+        elem.setAttribute('required','');
+    }
+    {% endfor %}
+}
+
+function cacherPro() {
+    document.getElementById('societe').style.visibility='hidden';
+    document.getElementById('cleaning_pro_1').style.display='none';
+    document.getElementById('cleaning_pro_2').style.display='none';
+    document.getElementById('gardening_pro_1').style.display='none';
+    document.getElementById('gardening_pro_2').style.display='none';
+    document.getElementById('ironing_pro').style.display='none';
+    document.getElementById('ironing_part').style.display='flex';
+    document.getElementById('gardening_part').style.display='flex';
+    document.getElementById('cleaning_part').style.display='flex';
+    document.getElementById('checkProNo').setAttribute('checked','');
+    document.getElementById('checkProNo').setAttribute('checked','');
+    document.getElementById('societe').style.opacity = '0';
+    document.getElementById('proYes').style.opacity = '0';
+
+}
+
+function afficherPro() {
+    document.getElementById('societe').style.visibility='visible';
+    document.getElementById('cleaning_pro_1').style.display='flex';
+    document.getElementById('cleaning_pro_2').style.display='block';
+    document.getElementById('gardening_pro_1').style.display='flex';
+    document.getElementById('gardening_pro_2').style.display='block';
+    document.getElementById('ironing_pro').style.display='block';
+    document.getElementById('ironing_part').style.display='none';
+    document.getElementById('gardening_part').style.display='none';
+    document.getElementById('cleaning_part').style.display='none';
+    document.getElementById('checkProYes').setAttribute('checked','');
+    document.getElementById('proNo').style.opacity = '0';
+}
+
+function selectedTask(value) {
+
+    if (value === 'cleaning') {
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='none';
+        document.getElementById('gardening').style.display='none';
+    }
+    if (value === 'ironing') {
+        document.getElementById('ironing').style.display='flex';
+        document.getElementById('cleaning').style.display='none';
+        document.getElementById('gardening').style.display='none';
+    }
+    if (value === 'gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='none';
+        document.getElementById('ironing').style.display='none';
+    }
+    if (value === 'cleaning_ironing') {
+        document.getElementById('gardening').style.display='none';
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='flex';
+    }
+    if (value === 'cleaning_gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='none';
+    }
+    if (value === 'ironing_gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='none';
+        document.getElementById('ironing').style.display='flex';
+    }
+    if (value === 'cleaning_ironing_gardening') {
+        document.getElementById('gardening').style.display='flex';
+        document.getElementById('cleaning').style.display='flex';
+        document.getElementById('ironing').style.display='flex';
+    }
+}
+
+
+</script>
+
+{%  endblock %}

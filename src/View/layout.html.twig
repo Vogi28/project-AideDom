@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% block stylesheet %}
+{% endblock %}
+    <link rel="icon" href="/assets/images/favicon.png">
+</head>
+
+<body>
+{% block adminHeader %}{% endblock %}
+{% block adminLogin %}{% endblock %}
+{% block content %}{% endblock %}
+
+{% block form %}
+{% endblock %}
+
+
+
+{% block content_client %}{% endblock %}
+{% block content_prestation %}{% endblock %}
+
+
+
+{% block header %}{% endblock %}
+{% block carousel %}{% endblock %}
+{% block section_menage %}{% endblock %}
+{% block section_repassage %}{% endblock %}
+{% block section_jardinage %}{% endblock %}
+{% block devis %}{% endblock %}
+
+{% block textes_accroche_et_images %}{% endblock %}
+{% block contenu_qui_sommes_nous %}{% endblock %}
+
+{% block notation_avantages %}{% endblock %}
+{% block contact %}{% endblock %}
+
+{% block contenu_mentions_legales %}{% endblock %}
+{% block contenu_politique_confidentialite %}{% endblock %}
+
+
+{% block footer %}{% endblock %}
+
+{% block javascript %}{% endblock %}
+
+</body>
+</html>

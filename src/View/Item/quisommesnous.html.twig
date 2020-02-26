@@ -1,0 +1,152 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Aide Dom'
+{% endblock %}
+
+{# ========================================================header====================================================== #}
+ {% block header %}
+     {#<div class="container-fluid">
+         <div class="row align-middle">
+             <div class="col align-middle">#}
+     <nav class="navbar navbar-expand-sm align-middle">
+         <ul class="navbar-nav align-middle">
+             <li class="nav-item active align-middle">
+                 <a class="nav-link" href="javascript:history.go(-1)"><img src="/assets/images/Logo.png" width="110px" height="auto"></a>
+             </li>
+             <li class="link_service_page">
+                 <a class="nav-link" href="/Service/index">Nos services</a>
+             </li>
+         </ul>
+     </nav>
+     {#</div>
+ </div>
+</div>#}
+ {% endblock %}
+
+{# ========================================= contenu mention légales ==========================================================================#}
+    {% block contenu_qui_sommes_nous %}
+        <div class="image_qui_sommes_nous">
+
+            <div class="content_boss">
+                <div class="boss">
+                    <img src="/assets/images/Gilles.png" class="card-img-top" alt="photo du patron Gilles">
+                    <div class="card-body">
+                        <h5 class="card-title">Gilles Samuel</h5>
+                        <p class="card-text">Directeur de Aide Dom'</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content_team">
+                <div class="team">
+                    <img src="/assets/images/minion_menage.png" class="card-img-top" alt="photo responsable menage">
+                    <div class="card-body">
+                        <h5 class="card-title">Edouard LaSerpoch</h5>
+                        <p class="card-text">Notre responsable <br> service ménage </p>
+                    </div>
+                </div>
+                <div class="team">
+                    <img src="/assets/images/minion_repassage.png" class="card-img-top" alt="photo responsable repassage">
+                    <div class="card-body">
+                        <h5 class="card-title">Vogi Biensappé</h5>
+                        <p class="card-text">Notre responsable <br> service repassage </p>
+                    </div>
+                </div>
+                <div class="team">
+                    <img src="/assets/images/minion_jardinier.png" class="card-img-top" alt="photo responsable jardinage">
+                    <div class="card-body">
+                        <h5 class="card-title">Cyrille Lafougère</h5>
+                        <p class="card-text">Notre responsable <br> service jardinage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contenu_qui_sommes_nous">
+            <div>
+                <p>La société strasbourgeoise Aide Dom’ ce spécialise dans une gamme de services destinée à répondre aux besoins spécifiques des familles: ménage, repassage et jardinage.</p>
+                <p>Son agence domicilié au centre de Strasbourg a pour objectif de créer une relation privilégiée avec ses clients fondée sur la proximité et la confiance.</p>
+                <p>Empreint d’une volonté forte de garantir la qualité de ses services, Aide Dom’ s’est lancé dans une démarche de certification NF Service.</p>
+                <p>Son agence bénéficie d’un agrément permettant à ses clients particuliers de bénéficier d’avantages fiscaux très attractifs (réduction ou crédit d’impôts).</p>
+                <p>Nos engagements : Recrutement qualitatif, souplesse, réactivité et enfin compréhension des attentes de nos clients.</p>
+                <br>
+                <br>
+            </div>
+            <div>
+                <h3>Les aspects fondamentaux de notre réussite</h3>
+                <br>
+                <p>Le fort développement de notre activité et de nos effectifs ne nous a jamais fait oublier les aspects fondamentaux de notre réussite :</p>
+                <ul>
+                    <li> Notre avenir passe incontestablement par la satisfaction de nos clients.</li>
+                    <li> Nous devons capitaliser et valoriser le savoir faire de chacun.</li>
+                    <li> Nous devons nous adapter en permanence à vos demandes, tant au niveau de la qualité, que de l’implication et de la disponibilité de chacun.</li>
+                </ul>
+            </div>
+            <div>
+                <p>Pour cela, nous nous sommes engagés dans la mise en place d’un système de management de la qualité pour l’ensemble des activités de Aide Dom’.</p>
+                <br>
+                <h3>Cette démarche correspond également à une volonté :</h3>
+                <br>
+                <ul>
+                    <li> De traçabilité pour répondre aux exigences réglementaires et à vos attentes de plus en plus fortes dans le domaine des services à la personne.</li>
+                    <li> D’être force de proposition, en améliorant notre offre.</li>
+                    <li> D’assurer le respect de nos engagements.</li>
+                    <li> De progresser encore plus dans la recherche de votre satisfaction.</li>
+                </ul>
+                <br>
+                <br>
+            </div>
+
+            <h3>Proximité et professionnalisme font le succès de Aide Dom’ !</h3>
+        </div>
+
+
+    {% endblock %}
+
+{#=====================================FOOTER============================================#}
+
+
+  {% block footer %}
+      <nav class="footer footer-expand-lg">
+          <ul class="footer_nav">
+              <li class="foot_item active">
+                  <a class="foot_link" href="/Contact/index">Contact</a>
+              </li>
+              <li class="foot_item active">
+                  <a class="foot_link" href="/Confidentialite/index">Politique de confidentialité</a>
+              </li>
+              <li class="foot_item active">
+                  <a class="foot_link" href="/Mentions/index">Mentions légales</a>
+              </li>
+              <li class="foot_item active">
+                  {# {% if session.username === 'ADMIN' %} #}
+                  {# <a class="foot_link" href="Admin/index">Espace administrateur</a> #}
+                  {# {% else %} #}
+                  <a class="foot_link" href="/Admin/login">Espace administrateur</a>
+                  {# {% endif %} #}
+
+              </li>
+              <div class="fb_logo foot_item">
+                  <a href="https://www.facebook.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/facebook.png" alt="logo facebook"></a>
+              </div>
+              <div class="insta_logo foot_item">
+                  <a href="https://www.instagram.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/instagram.png" alt="logo instagram"></a>
+              </div>
+              <div class="twit_logo foot_item">
+                  <a href="https://twitter.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/twi.png" alt="logo twitter"></a>
+              </div>
+              <div class="twit_logo foot_item">
+                  <a href="https://tinder.com/?lang=fr/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/logo_tinder.png" alt="logo tinder"></a>
+              </div>
+          </ul>
+          </div>
+      </nav>
+
+  {% endblock %}
+
+
+{# ========================================================javascript====================================================== #}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,0 +1,227 @@
+<div class="row devis_gratuit">
+    <h2>Votre devis gratuit</h2>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="userFirstname">Prénom</span>
+            </div>
+            <input type="text" name="userFirstname" class="form-control" aria-label="userFirstname" aria-describedby="basic-addon1" required>
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="userLastname">Nom</span>
+            </div>
+            <input type="text" name="userLastname" class="form-control" aria-label="userLastname" aria-describedby="basic-addon1" required>
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="userMail">email</span>
+            </div>
+            <input type="text" name="userMail" id="userMailI" onchange="checkMail()" class="form-control" aria-label="userMail" aria-describedby="basic-addon1" required><!-- onchange="checkMail()" -->
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="userPhone">Tel.</span>
+            </div>
+            <input type="text" name="userPhone" id="userPhoneI" class="form-control" aria-label="userPhone" aria-describedby="basic-addon1" required>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="row">
+            <div class="col-8"><h4>La prestation est à facturer à une société ?</h4></div>
+            <div class="col-2 form-check" id="proYes">
+                <input class="form-check-input" type="radio" onclick="afficherPro()" name="checkPro" value="yes" id="checkProYes">
+                <label class="form-check-label" for="checkProYes">OUI</label>
+            </div>
+            <div class="col-2 form-check" id="proNo">
+                <input class="form-check-input" type="radio" onclick="cacherPro()" name="checkPro" value="no" id="checkProNo">
+                <label class="form-check-label" for="checkProNo">NON</label>
+            </div>
+        </div>
+
+
+        <!--<div>
+            <label><input type="radio" onclick="afficher()" name="check" value="1" /> Oui </label>
+            <label><input type="radio" onclick="cacher()" name="check" value="2" checked/> Non </label>
+        </div>-->
+        <div class="row" id="societe">
+            <div class="input-group mb-3 form_input" id="companyName">
+                <div class="input-group-prepend">
+                    <span class="input-group-text form_label" id="companyNameS">Société</span>
+                </div>
+                <input name="companyName" id="companyNameI" type="text" class="form-control" aria-label="companyName" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3 form_input" id="numSiret">
+                <div class="input-group-prepend">
+                    <span class="input-group-text form_label" id="numSiretS">n° SIRET</span>
+                </div>
+                <input name="numSiret" id="numSiretI" type="text" class="form-control" aria-label="numSiret" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <h3 class="intervention">Intervention</h3>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="adress">adresse</span>
+            </div>
+            <input type="text" name="adress" class="form-control" aria-label="adress" aria-describedby="basic-addon1" required>
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="floor">étage</span>
+            </div>
+            <input type="text" name="floor" id="floorI" class="form-control" placeholder="facultatif" aria-label="floor" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="appartNb">n° appart.</span>
+            </div>
+            <input type="text" name="appartNb" class="form-control" placeholder="facultatif" aria-label="appartNb" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="zipCode">Code postal</span>
+            </div>
+            <input type="text" name="zipCode" id="zipCodeI" class="form-control" aria-label="zipCode" aria-describedby="basic-addon1" required>
+        </div>
+        <div class="input-group mb-3 form_input">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="town">Ville</span>
+            </div>
+            <input type="text" name="town" class="form-control" aria-label="town" aria-describedby="basic-addon1" required>
+        </div>
+        <div id="servSelect">
+            <select class="custom-select" id="services" name="services" onchange="selectedTask()" required><!--onselect="selectedTask()"-->
+                <option value="" selected>---type(s) de Prestation souhaité(s)---</option>
+                <option value="cleaning">MENAGE</option>
+                <option value="ironing">REPASSAGE</option>
+                <option value="gardening">JARDINAGE</option>
+                <option value="cleaning_ironing">MENAGE + REPASSAGE</option>
+                <option value="cleaning_gardening">MENAGE + JARDINAGE</option>
+                <option value="ironing_gardening">REPASSAGE + JARDINAGE</option>
+                <option value="cleaning_ironing_gardening">MENAGE + REPASSAGE + JARDINAGE</option>
+            </select>
+        </div>
+        <div class="input-group form_input" id="servFreeze">
+            <div class="input-group-prepend">
+                <span class="input-group-text form_label" id="zipCode">Service choisi</span>
+            </div>
+            <input type="text" id="servFreezeI" name="services2" class="form-control" aria-label="zipCode" aria-describedby="basic-addon1" readonly>
+        </div>
+    </div>
+    <div class="col-8 container" id = "extraInfos">
+        <h3 class="detail_service">Detail service</h3>
+        <div class="row cleaning" id="cleaning">
+            <div class="col-3 service_label"><h4>Ménage</h4></div>
+            <div class="col-9">
+                <div class="input-group mb-3 form_input cleaning_part" id="cleaning_part">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form_label" id="cleanHoursNb">Nombre d'heures</span>
+                    </div>
+                    <input type="text" name="cleanHoursNb" id="cleanHoursNbI" class="form-control"
+                           placeholder="" aria-label="cleanHoursNb" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3 form_input cleaning_pro" id="cleaning_pro_1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form_label" id="cleanSurf">Surface au sol (m2)</span>
+                    </div>
+                    <input type="text" name="cleanSurf" id="cleanSurfI" class="form-control"
+                           placeholder="" aria-label="cleanSurf" aria-describedby="basic-addon1">
+                </div>
+                <div class="form-group cleaning_pro" id="cleaning_pro_2">
+                    <label for="cleanComments">Détails de la prestation souhaitée</label>
+                    <textarea name="cleanComments" class="form-control" id="cleanComments" rows="3"
+                              placeholder="facultatif"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row ironing" id="ironing">
+            <div class="col-3 service_label"><h4>Repassage</h4></div>
+            <div class="col-9">
+                <div class="input-group mb-3 form_input ironing_part" id="ironing_part">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form_label" id="ironHoursNb">Nombre d'heures</span>
+                    </div>
+                    <input type="text" name="ironHoursNb" class="form-control" id="ironHoursNbI" placeholder="" aria-label="ironHoursNb" aria-describedby="basic-addon1">
+                </div>
+                <div id="ironing_pro">
+                    <div class="row">
+                        <div class="col-6"><h4>Type de linge</h4></div>
+                        <div class="col-6"><h4>Poids (Kg)</h4></div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check col-6">
+                            <input class="form-check-input" type="checkbox" name="cottonClothes" value="cottonClothes" id="cottonClothes" onclick="afficherPoids(1)">
+                            <label class="form-check-label" for="cottonClothes">
+                                Habits - Coton
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="cottonClothesWeight" name="cottonClothesWeight">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check col-6">
+                            <input class="form-check-input" type="checkbox" name="otherClothes" value="otherClothes" id="otherClothes" onclick="afficherPoids(2)">
+                            <label class="form-check-label" for="otherClothes">
+                                Habits - Autres matières
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="otherClothesWeight" name="otherClothesWeight">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check col-6">
+                            <input class="form-check-input" type="checkbox" name="bedLinen" value="bedLinen" id="bedLinen" onclick="afficherPoids(3)">
+                            <label class="form-check-label" for="bedLinen">
+                                Linge de lit
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="bedLinenWeight" name="bedLinenWeight">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check col-6">
+                            <input class="form-check-input" type="checkbox" name="tableLinen" value="tableLinen" id="tableLinen" onclick="afficherPoids(4)">
+                            <label class="form-check-label" for="tableLinen">
+                                Linge de table ou cuisine
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="tableLinenWeight" name="tableLinenWeight">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row gardening" id="gardening">
+            <div class="col-3 service_label"><h4>Jardinage</h4></div>
+            <div class="col-9">
+                <div class="input-group mb-3 form_input gardening_part" id="gardening_part">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form_label" id="gardenHoursNb">Nombre d'heures</span>
+                    </div>
+                    <input type="text" name="gardenHoursNb" class="form-control" id="gardenHoursNbI" placeholder="" aria-label="gardenHoursNb" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3 form_input gardening_pro" id="gardening_pro_1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form_label" id="gardenSurf">Surface du jardin (m2)</span>
+                    </div>
+                    <input type="text" name="gardenSurf" class="form-control" id="gardenSurfI" placeholder="" aria-label="gardenSurf" aria-describedby="basic-addon1">
+                </div>
+                <div class="form-group gardening_pro" id="gardening_pro_2">
+                    <label for="gardenComments">Détails de la prestation souhaitée</label>
+                    <textarea class="form-control" id="gardenComments" name="gardenComments" rows="3" placeholder="facultatif"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Aide Dom'
+{% endblock %}
+
+{# ========================================================header====================================================== #}
+  {% block header %}
+      {#<div class="container-fluid">
+          <div class="row align-middle">
+              <div class="col align-middle">#}
+      <nav class="navbar navbar-expand-sm align-middle">
+          <ul class="navbar-nav align-middle">
+              <li class="nav-item active align-middle">
+                  <a class="nav-link" href="/Home/index"><img src="/assets/images/Logo.png" width="110px" height="auto"></a>
+              </li>
+              <li class="link_service_page">
+                  <a class="nav-link" href="/Service/index">Nos services</a>
+              </li>
+              <li class="link_service_page">
+                  <a class="nav-link" href="/QuiSommesNous/index">Qui sommes nous</a>
+              </li>
+          </ul>
+      </nav>
+      {#</div>
+  </div>
+</div>#}
+  {% endblock %}
+
+{# ========================================= contenu mention légales ==========================================================================#}
+    {% block contenu_mentions_legales %}
+
+        <div class="texte_mentions_legales">
+            <h2>MENTIONS LEGALES</h2>
+
+            <h3>Propriétaire du site</h3>
+
+            <p>Aide Dom (Société d'aide à domicile)</p>
+            <p>32 rue du bassin d'Austerlitz 67000 Strasbourg</p>
+            <p>Tél. : 03 01 02 03 04 (appel gratuit depuis un poste fixe)</p>
+            <p>Directeur de la Publication : M. Gilles Samuel</p>
+            <p>Rédactrice en chef : M/ Gilles Samuel</p>
+            <p>Hébergement du site</p>
+            <p>La plateforme de contenu web VEC_DEC.com  de la société VEC DEV est infogérée par la société : VEC DEV - 2 rue des Wilders Stylés, 67000 Strasbourg. Site Internet : https://www.VEC_DEV.fr</p>
+            <p>Pour toute question sur le site, vous pouvez contacter le service client VEC DEV en envoyant un email à contact@vecdev.com ou par courrier : Société VEC DEV - 2 rue des Wilders Stylés, 67000 Strasbourg.</p>
+
+            <h3>Propriété intellectuelle</h3>
+
+            <p>L’ensemble de ce site relève de la législation française et internationale sur les droits d’auteur et de la propriété intellectuelle. Toute utilisation ou reproduction, totale ou partielle, du site, des éléments qui le composent et/ou des informations qui y figurent, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par le Code de la propriété intellectuelle.</p>
+            <p>Toutefois, les informations propres à ce site peuvent être utilisées par des tiers dans les conditions suivantes après accord écrit de Aide Dom et à condition d’en mentionner la source. Elles ne pourront toutefois être utilisées à des fins commerciales ni publicitaires. Aide Dom se réserve la possibilité, à tout moment, sans préavis et sans avoir à motiver sa décision, d’interdire aux tiers concernés l’utilisation des informations telles que définies ci-avant.</p>
+
+            <p>Contenus</p>
+            <p>Aide Dom ne peut garantir l’absence de modification du site par un tiers (intrusion, virus…) et décline toute responsabilité quant au contenu des présentes pages et à l’utilisation qui pourrait en être faite par quiconque.</p>
+            <p>Aide Dom décline toute responsabilité quant aux défauts ou dommages qui pourraient survenir par la suite de la consultation ou de l’utilisation de ce site.</p>
+
+            <p>Liens</p>
+            <p>Les liens hypertextes vers d’autres sites ne sauraient engager la responsabilité de Aide Dom, notamment s’agissant du contenu de ces sites. Aide Dom n’est pas responsable des liens hypertextes pointant vers le présent site et interdit à toute personne de mettre en place un tel lien sans son autorisation écrite et préalable.</p>
+
+            <p>Divers</p>
+            <p>Tous les abonnements à un fournisseur d’accès à Internet et les frais qu’ils occasionnent ainsi que les frais de communication et de consultation sont à la charge de l’internaute.</p>
+
+            <h3>Cookies</h3>
+            <p>Nous mesurons le nombre de pages vues, le nombre de visites, ainsi que l’activité des visiteurs sur le site et leur fréquence de retour. À cet effet, nous utilisons la technologie des « cookies ».</p>
+            <p>Par ailleurs, en enregistrant des informations relatives à votre navigation sur notre site, vous n’aurez pas besoin, lors de votre prochaine visite, de les saisir à nouveau.</p>
+            <p>Nous vous informons que vous pouvez vous opposer à l’enregistrement de « cookies » en configurant votre navigateur de la manière suivante.</p>
+
+            <h3>Pour Google Chrome</h3>
+            <p>En haut à droite, cliquez sur les trois points verticaux (Plus Plus) puis sur Paramètres.</p>
+            <p>En bas de l'écran, cliquez sur Paramètres avancés.</p>
+            <p>Dans la section "Confidentialité et sécurité", cliquez sur Paramètres du site.</p>
+            <p>Cliquez sur Cookies.</p>
+            <p>Cliquer sur Désactiver les cookies : désactivez l'option Autoriser les sites à enregistrer/lire les données des cookies.</p>
+
+            <h3>Pour Mozilla firefox</h3>
+            <p>Choisissez le menu « outil » puis « Options »</p>
+            <p>Cliquez sur l’icône « vie privée »</p>
+            <p>Repérez le menu « cookie » et sélectionnez les options qui vous conviennent.</p>
+
+            <h3>Pour Microsoft Internet Explorer / EDGE</h3>
+            <p>Choisissez le menu « Outils » puis « Options Internet »</p>
+            <p>Cliquez sur l’onglet « Confidentialité »</p>
+            <p>Sélectionnez le niveau souhaité à l’aide du curseur.</p>
+
+            <h3>Pour Opéra 6.0 et au-delà :</h3>
+            <p>Choisissez le menu « Fichier »> « Préférences » Vie Privée</p>
+        </div>
+
+    {% endblock %}
+
+{#=====================================FOOTER============================================#}
+
+{% block footer %}
+    <nav class="footer footer-expand-lg">
+        <ul class="footer_nav">
+            <li class="foot_item active">
+                <a class="foot_link" href="/Contact/index">Contact</a>
+            </li>
+            <li class="foot_item active">
+                <a class="foot_link" href="/Confidentialite/index">Politique de confidentialité</a>
+            </li>
+            <li class="foot_item active">
+                <a class="foot_link" href="/Mentions/index">Mentions légales</a>
+            </li>
+            <li class="foot_item active">
+                {# {% if session.username === 'ADMIN' %} #}
+                {# <a class="foot_link" href="Admin/index">Espace administrateur</a> #}
+                {# {% else %} #}
+                <a class="foot_link" href="/Admin/login">Espace administrateur</a>
+                {# {% endif %} #}
+
+            </li>
+            <div class="fb_logo foot_item">
+                <a href="https://www.facebook.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/facebook.png" alt="logo facebook"></a>
+            </div>
+            <div class="insta_logo foot_item">
+                <a href="https://www.instagram.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/instagram.png" alt="logo instagram"></a>
+            </div>
+            <div class="twit_logo foot_item">
+                <a href="https://twitter.com/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/twi.png" alt="logo twitter"></a>
+            </div>
+            <div class="twit_logo foot_item">
+                <a href="https://tinder.com/?lang=fr/" target="_blank" class="link_social_network"><img class="logo_social_network" src="/assets/images/logo_tinder.png" alt="logo tinder"></a>
+            </div>
+        </ul>
+        </div>
+    </nav>
+
+{% endblock %}
+
+
+{# ========================================================javascript====================================================== #}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% endblock %}
